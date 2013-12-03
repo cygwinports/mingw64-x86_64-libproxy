@@ -1,0 +1,14 @@
+--- origsrc/libproxy-0.4.6/libproxy/cmake/devfiles.cmk	2010-09-01 15:23:34.000000000 -0500
++++ src/libproxy-0.4.6/libproxy/cmake/devfiles.cmk	2010-11-10 13:31:25.327459800 -0600
+@@ -1,4 +1,3 @@
+-if(NOT WIN32)
+   # PkgConfig file
+   set (PKGCONFIG_PREFIX ${CMAKE_INSTALL_PREFIX})
+   
+@@ -19,5 +19,4 @@ if(NOT WIN32 AND NOT APPLE)
+   
+   # CMake Find helper
+   configure_file(${CMAKE_SOURCE_DIR}/libproxy/Findlibproxy.cmake.in ${CMAKE_BINARY_DIR}/Findlibproxy.cmake @ONLY)
+-  install(FILES ${CMAKE_BINARY_DIR}/Findlibproxy.cmake DESTINATION ${SHARE_INSTALL_DIR}/cmake/Modules)
+-endif()
++  install(FILES ${CMAKE_BINARY_DIR}/Findlibproxy.cmake DESTINATION ${LIB_INSTALL_DIR}/cmake/libproxy RENAME libproxyConfig.cmake)

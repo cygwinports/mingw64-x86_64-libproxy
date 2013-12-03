@@ -1,0 +1,40 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross cmake
+
+NAME="mingw64-x86_64-libproxy"
+VERSION=0.4.11
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Proxy configuration management library for Win64 toolchain"
+DESCRIPTION="libproxy exists to answer the question: Given a network resource,
+how do I reach it? It handles all the details, enabling you to get back to
+programming. Just ask libproxy what proxy to use: you get simple code and your
+users get correct, consistant behavior and broad infrastructure compatibility."
+HOMEPAGE="http://code.google.com/p/libproxy/"
+SRC_URI="http://libproxy.googlecode.com/files/libproxy-${VERSION}.tar.gz"
+SRC_DIR="libproxy-${VERSION}"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/libproxy.git/plain/libproxy-0.4.10-mozjs.patch
+	0.4.6-cmake-install.patch
+	0.4.7-lib-install.patch
+	0.4.11-mingw-w64.patch
+"
+
+# DOTNET, WEBKIT: deps not yet in distro
+# ditto for KDE4, and it has pretty heavy deps for this purpose
+CYGCMAKE_ARGS="
+	-DKDE4_KDECONFIG_EXECUTABLE=NOTFOUND
+	-DBIPR=ON
+	-DWITH_DOTNET=OFF
+	-DWITH_GNOME3=OFF
+	-DWITH_MOZJS=OFF
+	-DWITH_PERL=OFF
+	-DWITH_PYTHON=OFF
+	-DWITH_VALA=OFF
+	-DWITH_WEBKIT=OFF
+"
+
+src_install() {
+	cd ${B}
+	cyginstall
+}
