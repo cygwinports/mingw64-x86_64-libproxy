@@ -3,7 +3,7 @@ inherit cross cmake
 
 NAME="mingw64-x86_64-libproxy"
 VERSION=0.4.11
-RELEASE=1
+RELEASE=2
 CATEGORY="Devel"
 SUMMARY="Proxy configuration management library for Win64 toolchain"
 DESCRIPTION="libproxy exists to answer the question: Given a network resource,
